@@ -1,3 +1,45 @@
+//Universidas Atonoma Nacional de Mexico
+//FACULTAD DE CONTADURÍA Y ADMINISTRACION
+//INFORMATICA A DISTANCIA
+//Programa creado por Daniel Hernandez Hernandez el 24/02/2025
+//Asignatura: Estructura de Datos 2331
+//Profesor: MORALES HERNANDEZ GUSTAVO ARMANDO
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+// Estructura del nodo
+typedef struct Node {
+    char op;
+    int value;
+    struct Node *left, *right;
+} Node;
+
+// Funcion para crear un nodo con valor
+Node *createValueNode(int value) {
+    Node *node = (Node *)malloc(sizeof(Node));
+    node->op = '\0';
+    node->value = value;
+    node->left = node->right = NULL;
+    return node;
+}
+
+// Funcion para crear un nodo con operador
+Node *createOpNode(char op, Node *left, Node *right) {
+    Node *node = (Node *)malloc(sizeof(Node));
+    node->op = op;
+    node->value = 0;
+    node->left = left;
+    node->right = right;
+    return node;
+}
+
+// Funcion para verificar si el arbol esta vacio
+bool isEmpty(Node *root) {
+    return root == NULL;
+}
+
 // Funcion para recorrer el arbol en orden (in-order) con paréntesis
 void printInOrder(Node *root) {
     if (root != NULL) {
@@ -16,3 +58,37 @@ void printInOrder(Node *root) {
         }
     }
 }
+
+// Funcion para insertar un nodo en el arbol
+Node *insert(Node *root, Node *node) {
+    // Implementación específica segun el tipo de árbol
+    return root;
+}
+
+// Funcion para eliminar un nodo del arbol 
+Node *delete(Node *root, int value) {
+    // Implementación especifica segun el tipo de arbol
+    return root;
+}
+
+int main() {
+    // Crear el arbol para la expresion 1 * ((3 ^ 4) + 2)
+    Node *n1 = createValueNode(1);
+    Node *n3 = createValueNode(3);
+    Node *n4 = createValueNode(4);
+    Node *n2 = createValueNode(2);
+    
+    Node *exp3_4 = createOpNode('^', n3, n4);
+    Node *exp3_4_plus_2 = createOpNode('+', exp3_4, n2);
+    Node *root = createOpNode('*', n1, exp3_4_plus_2);
+    
+    // Imprimir el arbol en orden
+    printf("Expresion en orden: ");
+    printInOrder(root);
+    printf("\n");
+    
+    return 0;
+}
+//Programador: Daniel Hernandez Hernandez
+//Programa para imprimir un arbol binario de una expresion matematica
+//Fecha: 19 de marzo de 2025
